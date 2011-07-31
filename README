@@ -12,10 +12,13 @@ This app is written to use PostgreSQL at this time.
 To get this application running:
 
 1. Edit the Journal.rb Settings class settings
-Give NAMESPACE a capitalized abbreviation based on the journal's name.
-Change the following: NAME, CODEN, ISSN, PUBLICATION_SITE, 
-EDITORIAL_SITE, OAI_IDENTIFIER, EDITOR_EMAIL, APPLICATION_EMAIL, 
-SUPPORT_EMAIL
+
+  Give NAMESPACE a capitalized abbreviation based on the journal's name.
+  
+  Change the following:
+  NAME, CODEN, ISSN, PUBLICATION_SITE, EDITORIAL_SITE, OAI_IDENTIFIER, EDITOR_EMAIL,
+  APPLICATION_EMAIL, SUPPORT_EMAIL
+
 2. Edit the mail_setup.rb file
 
 3. Edit the database.yml username and password
