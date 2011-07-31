@@ -1,0 +1,46 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+<p>
+  <b>To:</b>
+  <%= @form_letter.default_recipients %>
+</p>
+<p>
+  <b>Cc:</b>
+  <%= @form_letter.default_cc_recipients %>
+</p>
+<p>
+  <b>Bcc:</b>
+  <%= @form_letter.default_bcc_recipients %>
+</p>
+<p>
+  <b>Reply to:</b>
+  <%= @form_letter.default_reply_to %>
+</p>
+<p>
+  <b>Subject:</b>
+  <%= @form_letter.subject %>
+</p>
+<p>
+  <b>From:</b>
+  <%= @form_letter.default_from %>
+</p>
+<p class='with-min-link'>
+  <b>Body:</b>&nbsp;&nbsp;&nbsp;<%= link_to 'Show', '#', :id => 'form_letter_body_control' %>
+  <div style='display:none;' id='form_letter_body'><%= simple_format(@form_letter.body) %></div>
+</p>
+<p>
+  <b>Signature:</b>
+  <%= simple_format(@form_letter.signature) %>
+</p>
+<p>
+  <b>Notifiable type:</b>
+  <%= @form_letter.notifiable_type %>
+</p>
+<%= link_to 'Edit', edit_form_letter_path(@form_letter) %> |
+<%= link_to 'Destroy', @form_letter, :confirm => 'Are you sure?', :method => :delete, :title => 'Destroy this submission.' %>
+<%= render 'tags' %>
+<h3>Assign tag</h3>
+<%= form_tag form_letter_tags_path(@form_letter) do %>
+  <%= select_tag 'name', options_for_select(@tags_selection.map{|tag| [tag.titleize, tag]}) %>
+  <%= submit_tag 'Add' %>
+<% end %>

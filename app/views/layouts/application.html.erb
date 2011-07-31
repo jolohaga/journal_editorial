@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Journal</title>
+  <%= stylesheet_link_tag :all, :media => 'all', :recursive => true %>
+  <%= javascript_include_tag :all, :recursive => true %>
+  <%= csrf_meta_tag %>
+  <%= yield :head %>
+</head>
+<body>
+  <div id='body'>
+    <div id="user_nav">
+      <% if user_signed_in? %>
+        Signed in as <%= link_to_unless(current_user.minimum_readonly?, current_user.name, edit_user_registration_path) %>. Not you? <%= link_to "Sign out", destroy_user_session_path %>
+      <% end %>
+    </div>
+  <p id="notice" style='margin:0;padding:0;'><%= notice %></p>
+  <p id="alert" style='margin:0;padding:0;'><%= alert %></p>
+  <%# debug(current_user) %>
+  <%= yield %>
+  </div>
+</body>
+</html>

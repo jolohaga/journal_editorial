@@ -1,0 +1,29 @@
+<%- if @correspondence.submission_type == 'EmailPreSubmission'  -%>
+<h1><%= @correspondence.submission.subject %></h1>
+<p>
+  <label>From</label><br/>
+  <%= @correspondence.submission.from %>
+</p>
+<p>
+  <label>Submitted</label><br/>
+  <%= @correspondence.submission.submitted_at %>
+</p>
+<p>
+  <label>Message</label><br/>
+  <div style='height: 20em; overflow: scroll; width: 940px; border: 2px solid #ccc; padding-left: 12px;'><%= simple_format(@correspondence.submission.body) %></div>
+</p>
+<%- end -%>
+<%- if @correspondence.submission_type == 'WebPreSubmission' -%>
+<p>
+  <label>From</label><br/>
+  <%# @correspondence.submission.from %>
+</p>
+<p>
+  <label>Submitted</label><br/>
+  <%= @correspondence.submission.created_at %>
+</p>
+<p>
+  <label>Message</label><br/>
+  <div style='height: 20em; overflow: scroll; width: 940px; border: 2px solid #ccc; padding-left: 12px;'><%= simple_format(@correspondence.submission.message) %></div>
+</p>
+<%- end -%>

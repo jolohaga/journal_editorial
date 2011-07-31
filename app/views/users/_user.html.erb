@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td><%= display_roles(user) %></td>
+  <td><%= user.sign_in_count %></td>
+  <td><%= user.sign_in(:when => 'current') %></td>
+  <td><%= user.sign_in(:when => 'last') %></td>
+</tr>

@@ -1,0 +1,191 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+html {
+  overflow-y: auto;
+  background-color: transparent;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+label {
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  height: 2px;
+  width: 960px;
+  background-color: #ccc;
+  margin: 8px 0 13px 0;
+  padding: 0;
+}
+
+h1.higher {
+  line-height: 1em;
+}
+
+.sub-header {
+  margin-left: 10px;
+}
+ 
+.field_with_errors {
+  padding: 0;
+  margin: 0;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.applicant-list {
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+
+.odd {
+  background-color: #fff;
+}
+
+.even {
+  background-color: #fff;
+}
+
+table.table-for {
+  border-spacing: 0;
+  width: 960px;
+}
+
+table.table-for tr td {
+  padding: 5px 13px 13px 8px;
+  vertical-align: top;
+  border-bottom: 1px solid #c6c6c6;
+}
+
+table.table-for tr:hover {
+  background-color: #fff;
+}
+
+table.table-for tr.header {
+  background-color: #f0f0f0;
+}
+
+table.table-for tr.header td {
+  margin: 0;
+  padding: 3px 13px 3px 8px;
+}
+
+.header-link {
+  font-size: 1em;
+}
+
+#documents-section, #reviews-section {
+  border: 1px dotted black;
+}
+
+.pagination {
+  width: 960px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.sortable td>label:hover {
+  cursor: pointer;
+}
+
+/* Tooltip */
+a.info {
+  position: relative;
+  z-index: 24;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.info:hover {
+  z-index: 25;
+  background-color: #cff;
+}
+
+a.info span {
+  display: none;
+}
+
+a.info:hover span {
+  display: block;
+  position: absolute;
+  top: -1em;
+  left: -2em;
+  border: 1px solid #c6c6c6;
+  background-color: #ffffd8;
+  color: #000;
+  text-align: center;
+  padding: 0 3px 0 3px;
+}
+
+.notice {
+  color: #7b68ee;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.hint {
+  font-style: italic;
+  font-weight: normal;
+  color: #aaa;
+}
+
+.pagination {
+  margin: 0;
+}

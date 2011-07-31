@@ -1,0 +1,11 @@
+<%= table_for :documents do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td>
+      <% if current_user.manager? %>
+        <label>Actions</label>
+      <%- end -%>
+    </td>
+  </tr>
+  <%= render @documents %>
+<%- end -%>

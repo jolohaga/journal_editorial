@@ -1,0 +1,8 @@
+<% content_for :links do %>
+  <%= render 'links' %>
+<% end %>
+<% content_for :table do %>
+  <%= render 'table' %>
+<% end %>
+<h1>Home</h1>
+<%= yield :table %>

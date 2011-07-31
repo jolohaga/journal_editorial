@@ -1,0 +1,30 @@
+<%= render :partial => 'dashboard/header' %>
+<h1>Submissions</h1>
+<table style='margin-bottom: 13px;'>
+  <tr>
+    <td>
+      <label>Filter by:</label> <%= select_tag 'filter', grouped_options_for_select(Submission::PUBLISHING_STATES, params[:filter_by]), :class => 'high-lines' %>
+    </td>
+    <td>
+    <form action=<%= search_submissions_path %> method='get' id='search_submissions_form'>
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag(:q,nil,:size => 50,:id => 'submission_search_field') %>
+      <%= submit_tag("Search", :name => nil) %>
+    </form>
+    </td>
+  </tr>
+</table>
+<%= table_for :submissions do %>
+  <tr class='header'>
+    <td style='width: 8%;'><label>ID</label></td>
+    <td><label>Title</label></td>
+    <td style='width: 25%;'><label>Status</label></td>
+  </tr>
+  <%= render :partial => 'submission', :collection => @submissions %>
+<%- end -%>
+<br />
+<%= will_paginate @submissions %>
+<hr />
+<%- if current_user.manager? -%>
+  <%= link_to 'New submission', new_submission_path %>
+<% end %>

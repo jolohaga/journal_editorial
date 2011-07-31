@@ -1,0 +1,1 @@
+<p><%= link_to at_a_glance.slug_display + ': ' + at_a_glance.title, at_a_glance %><br/>State: <%= at_a_glance.current_state.state.titleize %><br/>Recorded: <%= time_ago_in_words(at_a_glance.current_state.recorded_at) + ' ago' %></p>

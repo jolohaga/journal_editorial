@@ -1,0 +1,14 @@
+<%= render :partial => 'dashboard/header' %>
+<h1><%= @header %></h1>
+<%= table_for :activity do %>
+  <tr class='header'>
+    <td><label>Asset</label></td>
+    <td><label>Action</label></td>
+    <td><label>Committer</label></td>
+    <td><label>Changes</label></td>
+    <td><label>Time ago</label></td>
+  </tr>
+  <%= render :partial => 'activity', :collection => @activity %>
+<%- end -%>
+<br />
+<%= will_paginate @activity %>

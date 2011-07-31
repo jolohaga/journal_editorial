@@ -1,0 +1,27 @@
+<% content_for :head do %>
+  <%= javascript_tag do %>
+  var expertise = new Array(<%= "'#{Specialization.all.collect {|s| s.name}.sort.join("', '")}'" %>);
+  <% end %>
+<% end %>
+<%= render :partial => 'dashboard/header' %>
+<h1>Editorial Board</h1>
+<form action=<%= search_editors_path %> method='get' id='search_expertise_form'>
+  <%= label_tag(:q, "Search for expertise:") %>
+  <%= text_field_tag(:q,nil,:size => 50,:id => 'expertise_search_field') %>
+  <%= submit_tag("Search", :name => nil) %>
+</form>
+<br/>
+<%= table_for :editors do %>
+  <tr class='header'>
+    <td style='width: 15%;'><label>Name</label></td>
+    <td style='width: 15%;'><label>Assignments</label></td>
+    <td><label>Expertise</label></td>
+  </tr>
+  <%= render :partial => 'editor', :collection => @associates %>
+<%- end -%>
+<br />
+<%= will_paginate @associates %>
+<hr />
+<%- if current_user.manager? -%>
+<%= link_to 'New editor', new_editor_path %>
+<%- end -%>

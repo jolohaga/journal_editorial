@@ -1,0 +1,4 @@
+<%= upload_form_for(:object => @folder, :action => submission_folders_path(@submission), :place_block => :before) do %>
+  <p><label>Activity</label> <%= select_tag "folder[activity]", options_for_select(Folder::FOLDERS), :include_blank => true %> <label>Tag</label> <%= select_tag "folder[tag]", options_for_select(Folder::FOLDER_TAGS), :include_blank => true %></p>
+  <p><label>Note</label><br/><%= text_area_tag "folder[note]", nil, :size => "50x8" %></p>
+<%- end -%>

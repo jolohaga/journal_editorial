@@ -1,0 +1,1 @@
+<p style='margin: 5px; padding: 0;'><%= link_to observed_header_display(recent), observed_url_to(recent) %>: <%= observed_action_display(recent) %> <%= time_ago_in_words(recent.created_at) + ' ago' %> <%= 'by ' + observed_committer_display(recent) %> <%= link_to 'History', activity_on_path(recent.submission) %></p>

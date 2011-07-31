@@ -1,0 +1,41 @@
+<%= form_for(@associate, :url => associates_create_path) do |f| %>
+  <% if @associate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate.errors.count, "error") %> prohibited this associate from being saved:</h2>
+      <ul>
+      <% @associate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>  <span class='hint'>(Required)</span>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>  <span class='hint'>(Required)</span>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>  <span class='hint'>(Required and must be unique)</span>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>  <span class='hint'>(Required.  Set to default)</span>
+  </div>
+  <div class='field'>
+    <%= fields_for :role do |role_form| %>
+      <%= role_form.label :role %><br/>
+      <%= role_form.select :name, options_for_select(Role::ASSIGNABLE_ROLES) %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <p><div class="actions">
+    <%= submit_tag('Create associate') %>
+  </div></p>
+<% end %>

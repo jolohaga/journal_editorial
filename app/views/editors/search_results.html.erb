@@ -1,0 +1,13 @@
+<%= render :partial => 'breadcrumbs' %>
+<h1 style='margin-bottom: 8px;'>Editorial Board</h1>
+<h3 style='margin:0 0 23px 0;'>Expertise search results for '<%= @query %>'</h3>
+<%= table_for :editors do %>
+  <tr class='header'>
+    <td style='width: 15%;'><label>Name</label></td>
+    <td style='width: 15%;'><label>Assignments</label></td>
+    <td><label>Expertise</label></td>
+  </tr>
+  <%= render :partial => 'editor', :collection => @editors %>
+<%- end -%>
+<br />
+<%= will_paginate @editors %>

@@ -1,0 +1,58 @@
+<% content_for :head do %>
+  <%= javascript_tag do %>
+    var min_date = "";
+    var max_date = "";
+  <% end %>
+<% end %>
+<%= form_for @submission do |f| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this role from being saved:</h2>
+      <ul>
+      <% @submission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--
+  Add note with: "submitted by", "on behalf of", "message"
+  -->
+  <% unless current_user.exempt? %>
+  <div class="field">
+    <%= f.label :assignment_number %><br />
+    <%= f.text_field :assignment_number, :size => 5 %>&nbsp;&nbsp;&nbsp;<span class='hint'>(Leave blank for auto-assignment)</span>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :size => 80 %>&nbsp;&nbsp;&nbsp;<span class='hint'>(Replace with title of paper)</span>
+  </div>
+  <div class="field">
+    <%= f.label :authors %><br />
+    <%= f.text_field :authors, :size => 80 %>&nbsp;&nbsp;&nbsp;<span class='hint'>(Replace with authors of paper)</span>
+  </div>
+  <div class="field">
+    <%= f.label :paper_type %><br />
+    <%= f.select :paper_type, Submission::PAPER_TYPES %>
+  </div>
+  <div class="field">
+    <%= f.label :abstract %><br />
+    <%= f.text_area :abstract, :cols => 80 %>
+  </div>
+  <div class='field'>
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords, :size => 80 %>
+  </div>
+  <%- if current_user.manager? && @submission.new_record? -%>
+    <%= fields_for State.new do |state| %>
+      <div class='field'>
+        <%= state.label :recorded_at %><br/>
+        <%= state.text_field :recorded_at, :value => Date.today %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit submit_label %>
+  </div>
+<% end %>

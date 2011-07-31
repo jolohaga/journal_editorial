@@ -1,0 +1,60 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+<p>
+  <label>Authors:</label>
+  <%= @submission.authors %>
+</p>
+<p>
+  <label>Paper type:</label>
+  <%= @submission.paper_type %>
+</p>
+<div class='with-min-link'>
+  <label>Abstract:</label>
+  <%= link_to 'Show', '#', :id => 'abstract_control' %>
+  <div style='display:none;' id='abstract'><%= simple_format(@submission.abstract) %></div>
+</div>
+<p>
+  <label>Keywords:</label>
+  <%= @submission.keywords %>
+</p>
+<%- if current_user.manager? -%>
+<p>
+  <%= link_to 'Edit', edit_submission_path(@submission), :title => 'Edit submission id, title, authors, paper type, abstract.' %> 
+  <%- if current_user.administrator? -%>
+  | <%= link_to 'Destroy', @submission, :confirm => 'Are you sure?', :method => :delete, :title => 'Destroy this submission.' %>
+  <%- end -%>
+</p>
+<%- end -%>
+<p class='with-min-link'>
+  <label>State:</label>
+  <%= @submission.state_display %>&nbsp;
+  <%=
+  link_to_if(current_user.manager?, 'Manage', submission_states_path(@submission), :title => 'Edit state dates and advance to next state or revert to previous state.') do
+    link_to_if(current_user.managing_editor?, 'History', submission_states_path(@submission), :title => 'View state history.') do
+    end
+  end
+  %>
+</p>
+<p>
+  <label>Editors:</label> <%= editors_display %>&nbsp;
+  <%- if current_user.manager? -%>
+  <span class='with-min-link'><%= link_to 'Manage', submission_assignments_path(@submission), :title => 'Edit editors, reviewers and corresponding authors involved with this submission.' %></span>
+  <%- end -%>
+  <%- if current_user.associate_editor? && @submission.editors.blank? && @submission.awaiting_review? -%>
+  <span class='with-min-link'><%= link_to 'Adopt', adopt_submission_path(@submission), :confirm => "Are you sure you want to adopt this submission?\nThe state of the submission will change to 'Reviewing' with you assigned as editor.", :title => 'Adopt this submission.' %></span>
+  <%- end -%>
+</p>
+<%- if current_user.manager? -%>
+<p>
+  <label>Notifications:</label>&nbsp;
+  <span class='with-min-link'><%= link_to 'Select', submission_notifications_path(@submission), :title => 'Compose and email notifications.' %></span>
+</p>
+<%- end -%>
+<%- if current_user.administrator? -%>
+<%# To do: under development %>
+<p>
+  <label>Comments:</label>&nbsp;
+  <span class='with-min-link'><%= link_to 'Manage', '#', :title => 'View and edit comments.' %></span>
+</p>
+<%- end -%>
+<%= render 'folders' %>

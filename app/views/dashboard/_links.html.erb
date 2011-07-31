@@ -1,0 +1,27 @@
+<td>
+  <h3>Links</h3>
+<% if current_user.manager? %>
+  <h4><%= link_to 'Submissions', submissions_path %></h4>
+  <h4><%= link_to 'Editorial Board', editors_path %></h4>
+  <% if current_user.administrator? %>
+  <!-- Expose correspondences, specializations, and form letters, when they're finished. -->
+  <h4><%= link_to 'Correspondences', correspondences_path %></h4>
+  <h4><%= link_to 'Form Letters', form_letters_path %></h4>
+  <h4><%= link_to 'Specializations', specializations_path %></h4>
+  <!-- Expose users and roles only to administrator -->
+  <h4><%= link_to 'Users', users_path %></h4>
+  <h4><%= link_to 'Roles', roles_path %></h4>
+  <% end %>
+<% elsif current_user.managing_editor? %>
+  <h4><%= link_to 'Submissions', submissions_path %></h4>
+  <h4><%= link_to 'Editorial Board', editors_path %></h4>
+<% elsif current_user.associate_editor? %>
+  <h4><%= link_to 'Submissions', submissions_path %></h4>
+  <h4><%= link_to 'Editorial Board', editors_path %></h4>
+<% elsif current_user.minimum_readonly? %>
+  <h4><%= link_to 'Submissions', submissions_path %></h4>
+  <h4><%= link_to 'Editorial Board', editors_path %></h4>
+<% else %>
+  <!-- No-access user logged in. -->
+<% end %>
+</td>

@@ -1,0 +1,23 @@
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+
+<h3 style='margin: 21px 0 8px 0;'>Assignments</h3>
+<%= table_for :assignments do %>
+  <tr class='header'>
+    <td><label>Person</label></td>
+    <td><label>Role</label></td>
+    <td><label>Actions</label></td>
+  </tr>
+  <%= render :partial => 'assignment', :collection => @assignments %>
+<% end %>
+<%- if current_user.manager? -%>
+<h3>Assign</h3>
+<%= form_for @submission, :url => submission_assignments_path(@submission), :html => {:method => :post} do |submission| %>
+  <%= fields_for :assignment do |assignment_form| %>
+    <%= assignment_form.select :user_id, options_for_select(available_associates) %>
+    <%= assignment_form.select :role, options_for_select(Role::ASSIGNABLE_ROLES) %>
+  <% end %>
+  <%= submission.submit 'Assign', :confirm => 'Are you sure?' %>&nbsp;&nbsp;&nbsp;<%= link_to 'New associate', new_submission_associate_path(@submission) %>
+<% end %>
+<%- end -%>

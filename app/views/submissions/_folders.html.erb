@@ -1,0 +1,13 @@
+<%= render 'shared/instructions' %>
+<h2>Folders</h2>
+<%= table_for :folders do %>
+  <tr class='header'>
+    <td><label>Folder</label></td>
+    <td><label>Created</label></td>
+    <td><label>Files</label></td>
+  </tr>
+  <%= render :partial => 'folder', :collection => @folders %>
+<% end %>
+<%- if current_user.manager? -%>
+<p><%= link_to 'New folder', new_submission_folder_path(@submission) %></p>
+<%- end -%>

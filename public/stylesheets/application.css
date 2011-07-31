@@ -1,0 +1,110 @@
+body {
+  text-align: center;
+  padding-top: 23px;
+}
+
+#body {
+  margin: 0px auto;
+  width: 960px;
+  text-align:left;
+  padding: 13px;
+	border: 1px solid #ccc;
+}
+
+div#user_nav { float: right; font-size: 0.9em;}
+
+table#dashboard {
+  width: 100%;
+}
+
+table#dashboard td {
+  width: 25%;
+  vertical-align: top;
+  /*padding-right: 10px;*/
+}
+
+table#dashboard td a:link {
+  text-decoration: none;
+}
+
+table#dashboard td>div {
+   height: 450px;
+   overflow: auto;
+   padding: 0 8px 0 0;
+}
+
+.with-min-link a {
+  font-size: 10px;
+  /*font-style: italic;*/
+}
+
+.min-text {
+  font-size: 10px;
+}
+
+#notice, #alert {
+  color: red;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.center-align {
+  text-align: center;
+}
+
+#selected-files table tr td {
+  padding-right: 13px;
+}
+
+#outstanding_button, #recent_button, #adoption_button, #active_assignments_button, #published_assignments_button, #removed_assignments_button {
+  cursor: pointer;
+}
+
+#outstanding_button:hover, #recent_button:hover, #adoption_button:hover, #active_assignments_button:hover, #published_assignments_button:hover, #removed_assignments_button:hover {
+  color: #fff; background-color:#000;
+}
+
+#outstanding_button {
+  font-weight: bold;
+}
+
+#active_assignments_button {
+  font-weight: bold;
+}
+
+#search_submissions_form select {
+  display: inline;
+}
+
+.ui-menu-item {
+  text-align: left;
+  font-size: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 0;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment  {
+  height: 10px;
+  display: block;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece  {
+  background-color: #ccc;
+  -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background-color: #3b3b3b;
+  -webkit-border-radius: 6px;
+}

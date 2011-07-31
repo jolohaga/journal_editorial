@@ -1,0 +1,5 @@
+<tr>
+<td><%= link_to assignment.user.name, associate_path(assignment.user) %></td>
+<td><%= assignment.role %></td>
+<td><%= link_to_if current_user.manager?, 'Unassign', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

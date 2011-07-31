@@ -1,0 +1,19 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+<h2>Expertise management</h2>
+<h3>Expertise</h3>
+<%= table_for :specializations do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Catagory</label></td>
+    <td><label>Actions</label></td>
+  </tr>
+  <%= render :partial => 'specialization', :collection => @specializations %>
+<%- end -%>
+<h3>Assign</h3>
+<%= form_for @associate, :url => editor_expertise_index_path(@associate), :html => {:method => :post}  do |associate| %>
+  <%= fields_for :specialization do |specialization_form| %>
+    <%= specialization_form.select :name, grouped_options_for_select(@available_specializations) %>
+  <% end %>
+  <%= associate.submit 'Assign' %>
+<% end %>

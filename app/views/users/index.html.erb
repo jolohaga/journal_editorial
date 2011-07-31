@@ -1,0 +1,16 @@
+<%= render :partial => 'dashboard/header' %>
+<h1>Users</h1>
+<%= table_for :users do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Roles</label></td>
+    <td><label>Sign-in Count</label></td>
+    <td><label>Current Sign-in</label></td>
+    <td><label>Last Sign-in</label></td>
+  </tr>
+  <%= render :partial => 'user', :collection => @users %>
+<%- end -%>
+<br />
+<%= will_paginate @users %>
+<hr />
+<%= link_to 'New user', new_user_path %>

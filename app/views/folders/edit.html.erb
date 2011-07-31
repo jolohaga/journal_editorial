@@ -1,0 +1,26 @@
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+<%= form_for @folder do |f| %>
+  <% if @folder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+      <ul>
+      <% @folder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p class='field'>
+    <%= f.label :activity %><br />
+    <%= f.select :activity, @submission.available_folders %>
+  </p>
+  <p class='field'>
+    <%= f.label :attempt %><br />
+    <%= f.text_field :attempt, :size => 2, :maxlength => 2 %>
+  </p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+
+<%= render :partial => 'submission' %>
+
+<%= link_to 'Edit', edit_correspondence_path(@correspondence) %>
+<h2>
+  <label>Attachments</label>
+</h2>
+<%= table_for :attachments do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+  </tr>
+  <%= render @attachments %>
+<%- end  %>

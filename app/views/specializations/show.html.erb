@@ -1,0 +1,7 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+<p>
+  <label>Catagory</label><br/><%= @specialization.category %>
+</p>
+<%= link_to 'Edit', edit_specialization_path(@specialization) %> |
+<%= link_to 'Destroy', @specialization, :confirm => 'Are you sure?', :method => :delete %>

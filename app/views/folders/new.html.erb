@@ -1,0 +1,19 @@
+<%- content_for :head do -%>
+  <%= javascript_tag do %>
+    var next_folder_assignment_numbers = new Array();
+    <%- Folder::FOLDERS.each do |value| -%>
+    next_folder_assignment_numbers['<%= value %>'] = <%= @submission.folders.send(value.symbolize).count + 1 || '1' %>;
+    <%- end -%>
+  <% end %>
+<%- end -%>
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<h2>New folder</h2>
+<%= render :partial => 'shared/instructions' %>
+<%= upload_form_for(:object => @folder, :action => submission_folders_path(@submission), :place_block => :before) do |form| %>
+  <p><label>Activity</label> <%= form.select "activity", options_for_select(@submission.available_folders, @submission.default_folder) %></p>
+  <p><label>Attempt</label> <%= form.text_field "attempt", :size => 2, :maxlength => 2, :value => @submission.next_assignment_number %></p>
+  <%= fields_for :comments do |comment_field| %>
+    <p><label>Comment</label><br/><%= comment_field.text_area "comment", :size => "50x8" %></p>
+  <% end %>
+<%- end -%>

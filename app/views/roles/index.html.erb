@@ -1,0 +1,9 @@
+<%= render :partial => 'dashboard/header' %>
+<h1>Roles</h1>
+<%= table_for :roles do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+  </tr>
+  <%= render :partial => 'role', :collection => @roles %>
+<%- end -%>
+<p><%= link_to 'New role', new_role_path %></p>

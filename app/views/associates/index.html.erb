@@ -1,0 +1,15 @@
+<%= render :partial => 'dashboard/header' %>
+<%= render :partial => 'header' %>
+<%= table_for :associates do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Roles</label></td>
+  </tr>
+  <%= render :partial => 'associate', :collection => @associates %>
+<%- end -%>
+<br />
+<%= will_paginate @associates %>
+<hr />
+<%- if current_user.manager? -%>
+<%= link_to 'New associate', new_associate_path %>
+<%- end -%>

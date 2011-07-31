@@ -1,0 +1,2 @@
+<span><%= link_to_unless_current 'Home', root_path %></span> > 
+<span><%= link_to_unless_current 'Submissions', submissions_path(:page => session[:last_submissions_page], :filter_by => session[:last_filter_by]) %></span>

@@ -1,0 +1,1 @@
+<h2><%= link_to_unless_current 'Select Notifications', send("#{@notifiable.class.name.downcase}_notifications_path",@notifiable) %></h2>

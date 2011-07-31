@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to correspondence.submission.subject, correspondence_path(correspondence) %></td>
+  <td><%= correspondence.submission.display_description %></td>
+  <td><%= correspondence.attachments.length %></td>
+  <td><%= !correspondence.error_status.nil? %></td>
+  <td><%= link_to toggle_hide_label, hide_path(correspondence) %></td>
+</tr>

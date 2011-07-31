@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to folder.activity_attempt_display, folder_path(folder) %></td>
+  <td><%= folder.created_at.to_s(:short_display) %></td>
+  <td><%= folder.documents.length %></td>
+</tr>

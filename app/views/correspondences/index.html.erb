@@ -1,0 +1,17 @@
+<%= render :partial => 'dashboard/header' %>
+<h1>Correspondences</h1>
+<%= correspondences_navigation %>
+<%= table_for :entities do %>
+  <tr class='header'>
+    <td><label>Subject</label></td>
+    <td><label>Description</label></td>
+    <td><label>Attachments</label></td>
+    <td><label>Errors?</label></td>
+    <td><label>Actions</label></td>
+  </tr>
+  <%= render :partial => 'correspondence', :collection => @correspondences %>
+<%- end -%>
+<br />
+<%= will_paginate @correspondences %>
+<hr />
+<%= link_to 'New correspondence', new_correspondence_path %>

@@ -1,0 +1,23 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+<p><label>Email</label><br />
+  <%= @user.email %></p>
+<p><label>Active</label><br />
+  <%= @user.active %></p>
+<p>
+<%= link_to 'Edit', edit_user_path(@user) %> | 
+<%= link_to 'Destroy', @user, :confirm => 'Are you sure?', :method => :delete %>
+</p>
+<h2>Roles</h2>
+<%= table_for :roles do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Actions</label></td>
+  </tr>
+  <%= render :partial => 'role', :collection => @roles %>
+<%- end -%>
+<h3>Assign role</h3>
+<%= form_tag assign_role_user_path(@user) do %>
+  <%= select_tag 'role_id', options_for_select(@role_selections) %>
+  <%= submit_tag 'Assign' %>
+<% end %>

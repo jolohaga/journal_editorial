@@ -1,0 +1,1 @@
+<p><%= link_to assignment.slug_display + ': ' + assignment.title, assignment %><br/>State: <%= assignment.current_state.state.titleize %><br/>Recorded: <%= time_ago_in_words(assignment.current_state.recorded_at) %></p>

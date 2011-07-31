@@ -1,0 +1,11 @@
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+<p>Submission <%= @notifiable.slug_display %> is in the state: <%= @notifiable.submission.state_display %>.  The form letters available are:</p>
+<%= table_for :form_letters do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Body</label></td>
+  </tr>
+  <%= render :partial => 'form_letter', :collection => @form_letters %>
+<%- end -%>

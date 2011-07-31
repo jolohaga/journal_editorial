@@ -1,0 +1,47 @@
+<% content_for :head do %>
+  <%= javascript_tag do %>
+    var min_date = "<%= date_bound('min', @submission.next_state_recordable_date_range) %>";
+    var max_date = "<%= date_bound('max', @submission.next_state_recordable_date_range) %>";
+  <% end %>
+<% end %>
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+
+<h3 style='margin: 21px 0 8px 0;'>State history</h3>
+<%= table_for :states do %>
+  <tr class='header'>
+    <td><label>State</label></td>
+    <td><label>Recorded at</label></td>
+  </tr>
+  <%= render :partial => 'state', :collection => @states %>
+<% end %>
+<%- if current_user.manager? -%>
+<div id='datepicker'></div>
+<h3 style='margin: 21px 0 8px 0;'>Change state</h3>
+<div style='background: #fff; margin-top: 0; padding: 5px; border: 1px solid #c6c6c6;'>
+  <div><label>Current state:</label>&nbsp;&nbsp;&nbsp;<%= @submission.state.titleize %>, <%= @submission.current_state.recorded_at.to_s(:short_display) %></div>
+  <% unless @submission.state_events.empty? %>
+  <div style='margin-top: 8px; padding-top: 5px; border-top: 1px solid #c6c6c6;'>
+    <%= form_tag submission_states_path(@submission) do %>
+      <div style='margin-bottom: 5px;'><label>Advance state</label></div>
+      <label>Event:</label> <%= select_tag 'state[state]', options_for_select(@submission.state_events.sort.map {|e| e.to_s.titleize}) %>
+      <label>Date:</label> <%= text_field_tag 'state[recorded_at]', [Date.today, @submission.current_state.recorded_at].max %>
+      <% if @submission.awaiting_review? %>
+      <span id='adoptor_selection'><label>Adoptor/Assignee:</label> <%= select_tag('editor', options_for_select(@editors.collect{|e| [e.name, e.cached_slug]}), {:include_blank => 'Select editor...'}) %></span>
+      <% end %>
+      <%= submit_tag 'Advance', :confirm => "Advancing!  Are you sure?" %>
+    <% end %>
+  </div>
+  <% end %>
+  <% unless @submission.prior_state.nil? %>
+  <div style='margin-top: 8px; padding-top: 5px; border-top: 1px solid #c6c6c6;'>
+    <%= form_tag revert_state_submission_path(@submission) do %>
+      <div style='margin-bottom: 5px;'><label>Revert state</label></div>
+      <label>From:</label> <%= @submission.state.titleize %>, <%= @submission.current_state.recorded_at.to_s(:short_display) %>&nbsp;&nbsp;&nbsp;<label>To:</label> <%= @submission.prior_state.titleize %>, <%= @submission.prior_state_record.recorded_at.to_s(:short_display) %>&nbsp;&nbsp;&nbsp;
+      <%= submit_tag 'Revert', :confirm => "Reverting!  Are you sure?" %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<%- end -%>

@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to document.working_file.original_filename, document_path(document) %></td>
+  <td>
+    <%= link_to_if(current_user.manager?, 'Destroy', document, :confirm => 'Are you sure?', :method => :delete) do
+        end %>
+  </td>
+</tr>

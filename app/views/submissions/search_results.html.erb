@@ -1,0 +1,13 @@
+<%= render :partial => 'breadcrumbs' %>
+<h1 style='margin-bottom: 8px;'>Submissions</h1>
+<h3 style='margin:0 0 23px 0;'>Search results for '<%= @query %>'</h3>
+<%= table_for :submissions do %>
+  <tr class='header'>
+    <td style='width: 8%;'><label>ID</label></td>
+    <td><label>Title</label></td>
+    <td style='width: 25%;'><label>Status</label></td>
+  </tr>
+  <%= render :partial => 'highlighted_submission', :collection => @submissions %>
+<%- end -%>
+<br />
+<%= will_paginate @submissions %>

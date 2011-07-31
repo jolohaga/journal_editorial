@@ -1,0 +1,15 @@
+<%= render :partial => 'dashboard/header' %>
+<h1>Form letters</h1>
+
+<%= table_for :form_letters do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Body</label></td>
+    <td><label>Type</label></td>
+  </tr>
+  <%= render :partial => 'form_letter', :collection => @form_letters %>
+<%- end -%>
+<br />
+<%= will_paginate @form_letters %>
+<hr/>
+<%= link_to 'New Form letter', new_form_letter_path %>

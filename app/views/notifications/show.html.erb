@@ -1,0 +1,36 @@
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+<h3>Compose Notification for <%= @form_letter.name %></h3>
+<%= form_tag send("#{@notifiable.class.name.downcase}_notification_submit_path",@notifiable,@form_letter) do %>
+<table>
+  <tr>
+    <td style='text-align: right;'><label>To</label></td><td><%= text_field_tag 'to', @to, :style => 'width: 35em;' %></td>
+  </tr>
+  <tr>
+    <td style='text-align: right;'><label>Cc</label></td>
+    <td><%= text_field_tag 'cc', @cc, :style => 'width: 35em;' %></td>
+  </tr>
+  <tr>
+    <td style='text-align: right;'><label>Bcc</label></td>
+    <td><%= text_field_tag 'bcc', @bcc, :style => 'width: 35em;' %></td>
+  </tr>
+  <tr>
+    <td style='text-align: right;'><label>Reply to</label></td>
+    <td><%= text_field_tag 'reply_to', @reply_to, :style => 'width: 35em;' %></td>
+  </tr>
+  <tr>
+    <td style='text-align: right;'><label>Subject</label></td>
+    <td><%= text_field_tag 'subject', @subject, :style => 'width: 35em;' %></td>
+  </tr>
+  <tr>
+    <td style='text-align: right;'><label>From</label></td>
+    <td><%= text_field_tag 'from', @from, :style => 'width: 35em;' %></td>
+  </tr>
+</table>
+  <p>
+    <label>Message</label><br/>
+    <%= text_area_tag 'body', @message, :style => 'width: 800px; height: 300px;' %>
+  </p>
+  <%= submit_tag 'Send', :confirm => 'Are you sure?' %>
+<%- end -%>

@@ -1,0 +1,34 @@
+<table id='dashboard'>
+  <tr>
+    <%= yield :links %>
+    <% if current_user.managing_editor? || current_user.manager? %>
+    <td>
+      <h3 style='margin-bottom: 0;'>At a Glance<br/><span style='font-size: 10px;'><span id='outstanding_button'>Outstanding</span> | <span id='recent_button'>Recent</span> | <span id='adoption_button'>For adoption</span> | <%= link_to 'See all >', submissions_path %></span></h3>
+      <div id='outstanding'><%= render :partial => 'at_a_glance', :collection => @outstanding %></div>
+      <div id='recent' style='display: none;'><%= render :partial => 'at_a_glance', :collection => @recent %></div>
+      <div id='adoption' style='display: none;'><%= render :partial => 'at_a_glance', :collection => @awaiting_review %></div>
+    </td>
+    <%- end -%>
+    <% if current_user.administrator? %>
+    <td>
+      <h3 style='margin-bottom: 8px;'>Activity<br/><span style='font-size: 10px;'><%= link_to 'See all >', activity_path %></span></h3>
+      <div>
+      <%= render :partial => 'recent', :collection => @recent_activity %>
+      </div>
+    </td>
+    <%- end -%>
+    <% if current_user.assignable? && (not current_user.assignments.blank?) %>
+    <td>
+      <h3 style='margin-bottom: 0;'>My Assignments<br/><span style='font-size: 10px;'><%= link_to 'See all >', editor_path(current_user) %></span></h3>
+      <div><%= render :partial => 'assignment', :collection => @assignments %></div>
+    </td>
+    <% end %>
+    <% if current_user.associate_editor? && (not current_user.managing_editor?) %>
+    <td>
+      <h3 style='margin-bottom: 8px;'>Up for Adoption</h3>
+      <div><%= render :partial => 'at_a_glance', :collection => @awaiting_review %></div>
+    </td>
+    <%- end -%>
+    <!-- Read-only or no-access user logged in. -->
+  </tr>
+</table>

@@ -1,0 +1,4 @@
+<tr>
+  <td><%= state.state.titleize %></td>
+  <td><%= link_to_if current_user.manager?, state.recorded_at.to_s(:short_display), edit_state_path(state) %></td>
+</tr>

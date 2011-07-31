@@ -1,0 +1,14 @@
+<%= render :partial => 'dashboard/header' %>
+<h1>Specializations</h1>
+<%= table_for :specializations do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Catagory</label></td>
+  </tr>
+  <%= render :partial => 'specialization', :collection => @specializations %>
+<%- end -%>
+
+<br />
+<%= will_paginate @users %>
+<hr />
+<%= link_to 'New Specialization', new_specialization_path %>

@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to editor.name, editor_path(editor) %></td>
+  <td><%= display_assignments_for(editor, :as => Role::ASSOCIATE_EDITOR) %></td>
+  <td><%= expertise_display(editor.specializations, :separator => "<br/>") %></td>
+</tr>

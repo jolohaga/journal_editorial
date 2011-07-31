@@ -1,0 +1,22 @@
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+<p>
+  <label>Created:</label>
+  <%= @folder.created_at.to_s(:short_display) %>
+</p>
+<%- if current_user.manager? -%>
+<%= link_to 'Edit', edit_folder_path(@folder) %> | 
+<%= link_to 'Destroy', @folder, :confirm => 'Are you sure?', :method => :delete %>
+<p>
+  <label>Notifications:</label>&nbsp;&nbsp;
+  <span class='with-min-link'><%= link_to 'Select', folder_notifications_path(@folder), :title => 'Compose and email notifications.' %></span>
+</p>
+<%- end -%>
+<h3>Documents &nbsp;&nbsp;<span class='min-text'><%= link_to 'Download all', download_folder_path(@folder) %></span></h3>
+<%= render :partial => 'documents' %>
+<%- if current_user.manager? -%>
+  <h3>Add documents</h3>
+  <%= upload_form_for(:object => @folder, :action => upload_documents_folder_path(@folder)) do |f| %>
+  <%- end -%>
+<%- end -%>

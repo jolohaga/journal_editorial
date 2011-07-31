@@ -1,0 +1,17 @@
+<tr>
+  <td>
+    <%= link_to observed_header_display(activity), observed_url_to(activity) %>
+  </td>
+  <td>
+    <%= observed_action_display(activity) %>
+  </td>
+  <td>
+    <%= observed_committer_display(activity) %>
+  </td>
+  <td>
+    <%= activity.what_changed %>
+  </td>
+  <td style='width: 15%;'>
+    <%= time_ago_in_words(activity.created_at) + ' ago' %>
+  </td>
+</tr>

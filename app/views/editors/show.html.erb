@@ -1,0 +1,35 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render :partial => 'header' %>
+<p>
+  <label>Email</label><br/><%= @associate.email %>
+</p>
+<%- if current_user.manager? -%>
+<%= link_to 'Edit', edit_editor_path(@associate) %>
+<%- end -%>
+<p>
+  <label>Expertise</label> <span class='with-min-link'>
+    <%- if current_user.manager? || current_user == @associate -%>
+    &nbsp;&nbsp;<%= link_to 'Manage', editor_expertise_index_path(@associate), :title => 'Edit expertise list.' %></span>
+    <%- end -%>
+    <br/>
+  <%= expertise_display(@specializations, :separator => "<br/>") %>
+</p>
+<h3>Assignments<br/><span style='font-size: 10px;'><span id='active_assignments_button'>Active</span> | <span id='published_assignments_button'>Published</span> | <span id='removed_assignments_button'>Removed</span></span></h3>
+<%= table_for :assignments, :id => 'active_assignments' do %>
+  <tr class='header'>
+    <td><label>Title</label></td>
+  </tr>
+  <%= render :partial => 'assignment', :collection => @active_assignments %>
+<%- end -%>
+<%= table_for :assignments, :id => 'published_assignments', :style => 'display:none;' do %>
+  <tr class='header'>
+    <td><label>Title</label></td>
+  </tr>
+  <%= render :partial => 'assignment', :collection => @published_assignments %>
+<%- end -%>
+<%= table_for :assignments, :id => 'removed_assignments', :style => 'display:none;' do %>
+  <tr class='header'>
+    <td><label>Title</label></td>
+  </tr>
+  <%= render :partial => 'assignment', :collection => @removed_assignments %>
+<%- end -%>

@@ -1,0 +1,45 @@
+== Journal Editorial Application
+
+The Journal Editorial application is one of two applications intended to
+assist managing the editorial process of a peer-reviewed journal.
+
+(The other application, Journal Publication, handles the publication side.)
+
+== Getting Started
+
+This app is written to use PostgreSQL at this time.
+
+To get this application running:
+
+1. Edit the Journal.rb Settings class settings
+Give NAMESPACE a capitalized abbreviation based on the journal's name.
+Change the following: NAME, CODEN, ISSN, PUBLICATION_SITE, 
+EDITORIAL_SITE, OAI_IDENTIFIER, EDITOR_EMAIL, APPLICATION_EMAIL, 
+SUPPORT_EMAIL
+2. Edit the mail_setup.rb file
+
+3. Edit the database.yml username and password
+
+4. Create the journal_editorial_* databases.  Give them write access by username
+
+5. Run rake journal:initialize
+
+Additionally, you'll want to edit the FormLetters::SIGNATURE in Journal.rb
+
+== Form Letters
+
+The form letters are database stored Erb templates.
+
+The following global variables are available:
+
+NS.editor_email
+NS.editorial_site
+NS.publication_site
+NS.submissions_url
+NS.folders_url
+
+Where NS is the journal's capitalized abbreviation set in Settings::NAMESPACE
+
+== State machine
+
+See Submission_state.png for graph of the submission states defined by this application.

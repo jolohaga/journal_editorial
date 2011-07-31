@@ -1,0 +1,8 @@
+<h2>Tags</h2>
+<%= table_for :tags do %>
+  <tr class='header'>
+    <td><label>Name</label></td>
+    <td><label>Actions</label></td>
+  </tr>
+  <%= render :partial => 'tag', :collection => @tags %>
+<% end %>

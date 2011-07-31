@@ -1,0 +1,5 @@
+<tr>
+  <td style='width: 20%;'><%= link_to form_letter.name, form_letter, :title => "#{form_letter.body}" %></td>
+  <td><%= truncate(form_letter.body, :length => 240) %></td>
+  <td><%= form_letter.notifiable_type %></td>
+</tr>

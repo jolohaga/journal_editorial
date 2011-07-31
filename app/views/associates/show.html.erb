@@ -1,0 +1,19 @@
+<%= render :partial => 'breadcrumbs' %>
+<h1><%= @associate.name %></h1>
+<p>
+  <label>Email</label><br/><%= @associate.email %>
+</p>
+<p>
+  <label>Roles</label><br/><%= display_roles(@associate, :assignable_only => true, :exclude_count => true) %>
+</p>
+<p>
+  <%= link_to 'Edit', edit_associate_path(@associate) %>
+</p>
+<h2>Assignments</h2>
+<%= table_for :assignments do %>
+  <tr class='header'>
+    <td><label>Title</label></td>
+    <td><label>Role</label></td>
+  </tr>
+  <%= render :partial => 'assignment', :collection => @assignments %>
+<%- end -%>

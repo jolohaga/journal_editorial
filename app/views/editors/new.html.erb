@@ -1,0 +1,5 @@
+<%= render :partial => 'breadcrumbs' %>
+<%= render(:partial => 'submissions/header') unless @submission.nil? %>
+<%= render(:partial => 'assignments/header') unless @submission.nil? %>
+<h2>New editor</h2>
+<%= render 'form' %>

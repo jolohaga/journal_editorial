@@ -1,0 +1,12 @@
+<% content_for :head do %>
+  <%= javascript_tag do %>
+    var min_date = "<%= date_bound('min', @state.recordable_date_range) %>";
+    var max_date = "<%= date_bound('max', @state.recordable_date_range) %>";
+  <% end %>
+<% end %>
+<%= render :partial => 'submissions/breadcrumbs' %>
+<%= render :partial => 'submissions/header' %>
+<%= render :partial => 'header' %>
+
+<p><label>State:</label> <%= @state.state.titleize %></p>
+<%= render 'form' %>

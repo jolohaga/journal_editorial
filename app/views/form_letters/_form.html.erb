@@ -1,0 +1,57 @@
+<%= form_for(@form_letter) do |f| %>
+  <% if @form_letter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@form_letter.errors.count, "error") %> prohibited this form_letter from being saved:</h2>
+      <ul>
+      <% @form_letter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :size => 80 %>
+  </div>
+  <div class="field">
+    <%= f.label :to %><br />
+    <%= f.text_field :default_recipients, :size => 80 %>
+  </div>
+  <div class="field">
+    <%= f.label :cc %><br />
+    <%= f.text_field :default_cc_recipients, :size => 80, :value => @cc %>
+  </div>
+  <div class="field">
+    <%= f.label :bcc %><br />
+    <%= f.text_field :default_bcc_recipients, :size => 80 %>
+  </div>
+  <div class="field">
+    <%= f.label :reply_to %><br />
+    <%= f.text_field :default_reply_to, :size => 80, :value => @reply_to %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject, :size => 80 %>
+  </div>
+  <div class="field">
+    <%= f.label :from %><br />
+    <%= f.text_field :default_from, :size => 80, :value => @from %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :size => '80x20' %>
+  </div>
+  <div class="field">
+    <%= f.label :signature %><br />
+    <%= f.text_area :signature, :size => '80x10', :value => @signature %>
+  </div>
+  <div class="field">
+    <%= f.label :notifiable_type %><br />
+    <%= f.select :notifiable_type, FormLetter::NOTIFIABLE_TYPES, :value => @form_letter.notifiable_type %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
