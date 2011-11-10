@@ -5,3 +5,6 @@ end
 
 require 'extensions/string'
 include Journal::Extensions::String
+
+require 'extensions/object'
+include Journal::Extensions::Object

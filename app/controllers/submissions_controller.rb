@@ -1,17 +1,17 @@
 class SubmissionsController < ApplicationController
   respond_to :html, :xml
   load_and_authorize_resource
+  before_filter :set_paginate_filters, :only => :index
   
   def index
     session[:last_submissions_page] = params[:page]
     session[:last_filter_by] = params[:filter_by]
-    paginate_params = {:page => params[:page], :per_page => 8}
     if params[:filter_by] && (Submission.states.include?(params[:filter_by].symbolize) || Submission.respond_to?(params[:filter_by].symbolize))
-      respond_with @submissions = Submission.send(params[:filter_by].symbolize).order('submissions.assignment_number DESC').paginate(paginate_params)
+      respond_with @submissions = Submission.send(params[:filter_by].symbolize).order("submissions.assignment_number #{@order}").paginate(@paginate_params)
     elsif params[:filter_by] == '(off)'
       redirect_to submissions_path
     else
-      respond_with @submissions = Submission.order('submissions.assignment_number DESC').paginate(paginate_params)
+      respond_with @submissions = Submission.order('submissions.assignment_number DESC').paginate(@paginate_params)
     end
   end
   
@@ -114,5 +114,28 @@ class SubmissionsController < ApplicationController
       flash[:notice] = "This submission is not adoptable at this time!"
     end
     redirect_to submission
+  end
+  
+  private
+  def set_paginate_filters
+     @paginate_params = {:page => params[:page]}
+     if params[:per_page].is_numeric?
+        @paginate_params[:per_page] = params[:per_page]
+     else
+        if params[:per_page] == 'all'
+           @paginate_params[:per_page] = Submission.send(params[:filter_by].symbolize).count
+        else
+           @paginate_params[:per_page] = 8
+        end
+     end
+     unless params[:order].nil?
+        if ['ASC','DESC'].include?(params[:order].upcase)
+           @order = params[:order]
+        else
+           @order = 'DESC'
+        end
+     else
+        @order = 'DESC'
+     end
   end
 end
